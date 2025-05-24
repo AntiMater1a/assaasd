@@ -1,0 +1,263 @@
+/* Базовые переменные для светлой темы */
+:root {
+    --background: linear-gradient(to bottom, #f7f7f7, #e6e6ff);
+    --text-color: #333;
+    --input-background: #fff;
+    --button-background: #4a4a8b;
+    --button-hover: #3a3a7b;
+    --result-background: rgba(255, 255, 255, 0.8);
+    --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --accent: #ff6f61;
+    --particle-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Общие стили */
+body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    background: var(--background);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    transition: all 0.5s ease;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Заголовок */
+h1 {
+    font-size: 2.5em;
+    margin-top: 20px;
+    color: var(--accent);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    animation: float 5s infinite ease-in-out;
+}
+
+/* Поле ввода */
+input {
+    padding: 12px;
+    width: 80%;
+    max-width: 400px;
+    border: 2px solid var(--accent);
+    border-radius: 20px;
+    font-size: 1em;
+    margin-bottom: 15px;
+    background: var(--input-background);
+    color: var(--text-color);
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    border-color: var(--button-hover);
+    box-shadow: 0 0 10px var(--accent);
+}
+
+/* Кнопка */
+button {
+    padding: 12px 25px;
+    font-size: 1.2em;
+    color: #fff;
+    background-color: var(--button-background);
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+}
+
+button:hover {
+    background-color: var(--button-hover);
+    transform: scale(1.05);
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--particle-color);
+    transform: scale(0);
+    transition: transform 0.5s ease;
+}
+
+button:hover::before {
+    transform: scale(1.5);
+}
+
+/* Результат поиска */
+#result {
+    margin-top: 30px;
+    padding: 20px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    background: var(--result-background);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+/* Элемент клада */
+.treasure-item {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: var(--input-background);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+}
+
+.treasure-item h2 {
+    font-size: 1.5em;
+    color: var(--accent);
+    animation: fadeIn 1s ease-in-out;
+}
+
+.treasure-item p {
+    font-size: 1em;
+    color: var(--text-color);
+    margin-bottom: 10px;
+}
+
+.treasure-item .images {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.treasure-item img {
+    max-width: 200px;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.treasure-item img:hover {
+    transform: scale(1.1) rotate(2deg);
+}
+
+/* Модальное окно */
+#modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+#modal img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease;
+}
+
+#modal.active {
+    display: flex;
+}
+
+#modal img:hover {
+    transform: scale(1.02);
+}
+
+/* Анимированный фон с частицами */
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: var(--particle-color);
+    border-radius: 50%;
+    animation: moveParticle 10s infinite ease-in-out;
+}
+
+@keyframes moveParticle {
+    0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0.5;
+    }
+    50% {
+        transform: translateY(-100vh) translateX(50vw);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-200vh) translateX(100vw);
+        opacity: 0;
+    }
+}
+
+/* Парящие клады */
+.floating-treasure {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    font-size: 2em;
+    color: var(--accent);
+    cursor: pointer;
+    animation: float 5s infinite ease-in-out;
+}
+
+/* Анимации */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Пасхалка */
+.easter-egg {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    font-size: 1.2em;
+    color: var(--accent);
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.easter-egg.active {
+    opacity: 1;
+}
+
+.easter-egg:hover {
+    transform: scale(1.1);
+}
